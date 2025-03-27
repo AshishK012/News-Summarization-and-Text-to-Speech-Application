@@ -1,0 +1,15 @@
+streamlit
+pandas
+requests
+beautifulsoup4
+nltk
+contractions
+matplotlib
+scikit-learn
+gtts
+python-dotenv
+fastapi 
+uvicorn
+googletrans==3.1.0a0
+translate
+deep-translator
