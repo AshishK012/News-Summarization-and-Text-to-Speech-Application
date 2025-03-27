@@ -5,11 +5,16 @@ from  utils import translate_to_hindi,strip_html,replace_contractions,remove_num
 import nltk
 from itertools import combinations
 import nltk
+from nltk.data import find
+
 nltk.download('punkt')
 
-import nltk
-nltk.download('punkt')
-
+try:
+    find('tokenizers/punkt')
+    print("Punkt tokenizer found!")
+except LookupError:
+    print("Punkt tokenizer NOT found!")
+    
 def main():
     st.title("Company News Analysis App")
     
