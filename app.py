@@ -10,11 +10,15 @@ from nltk.data import find
 import nltk
 import os
 
-# Ensure NLTK data path includes the custom directory
-nltk.data.path.append(os.path.expanduser("~/nltk_data"))
+# Define a path to store NLTK data
+nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
+nltk.data.path.append(nltk_data_path)
 
-# Force download the Punkt tokenizer before usage
-nltk.download('punkt', download_dir=os.path.expanduser("~/nltk_data"), force=True)
+# Download required data if not already present
+nltk.download('punkt', download_dir=nltk_data_path)
+
+# Import tokenizer after downloading
+from nltk.tokenize import word_tokenize
 
 
     
