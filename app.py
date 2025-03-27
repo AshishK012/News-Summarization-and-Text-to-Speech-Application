@@ -4,6 +4,11 @@ from utils import fetch_articles, get_sentiment, extractive_summarize, extract_k
 from  utils import translate_to_hindi,strip_html,replace_contractions,remove_numbers,normalize
 import nltk
 from itertools import combinations
+import nltk
+nltk.download('punkt')
+
+import nltk
+nltk.download('punkt')
 
 def main():
     st.title("Company News Analysis App")
