@@ -8,7 +8,14 @@ import nltk
 from nltk.data import find
 
 import nltk
-nltk.download('punkt', force=True)
+import os
+
+# Ensure NLTK data path includes the custom directory
+nltk.data.path.append(os.path.expanduser("~/nltk_data"))
+
+# Force download the Punkt tokenizer before usage
+nltk.download('punkt', download_dir=os.path.expanduser("~/nltk_data"), force=True)
+
 
     
 def main():
