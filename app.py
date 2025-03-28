@@ -8,6 +8,7 @@ from itertools import combinations
 import nltk
 import os
 nltk.download('punkt_tab')
+nltk.download('wordnet')
 # Explicitly set the environment variable
 os.environ["NLTK_DATA"] = "/home/appuser/nltk_data"
 
