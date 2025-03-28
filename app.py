@@ -9,6 +9,7 @@ import nltk
 import os
 nltk.download('punkt_tab')
 nltk.download('wordnet')
+nltk.download('vader_lexicon')
 # Explicitly set the environment variable
 os.environ["NLTK_DATA"] = "/home/appuser/nltk_data"
 
