@@ -1,0 +1,3 @@
+- name: Download NLTK data
+  run: |
+    python -c "import nltk; nltk.download('punkt')"
