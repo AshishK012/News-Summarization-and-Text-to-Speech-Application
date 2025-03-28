@@ -8,8 +8,12 @@ from itertools import combinations
 import nltk
 import os
 
+# Set the path to your local nltk_data directory
+nltk.data.path.append(os.path.abspath("nltk_data"))
 
-nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
+# Now, try to use the tokenizer
+from nltk.tokenize import sent_tokenize
+
 
 def main():
     st.title("Company News Analysis App")
