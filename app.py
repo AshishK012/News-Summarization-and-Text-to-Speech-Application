@@ -4,24 +4,22 @@ from utils import fetch_articles, get_sentiment, extractive_summarize, extract_k
 from  utils import translate_to_hindi,strip_html,replace_contractions,remove_numbers,normalize
 import nltk
 from itertools import combinations
-import nltk
-from nltk.data import find
 
 import nltk
 import os
+nltk.download('punkt_tab')
+nltk.download('wordnet')
+nltk.download('vader_lexicon')
+# Explicitly set the environment variable
+os.environ["NLTK_DATA"] = "/home/appuser/nltk_data"
 
-# Define a path to store NLTK data
-nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
-nltk.data.path.append(nltk_data_path)
+# Ensure path is set
+nltk.data.path.append("/home/appuser/nltk_data")
 
-# Download required data if not already present
-nltk.download('punkt', download_dir=nltk_data_path)
-
-# Import tokenizer after downloading
-from nltk.tokenize import word_tokenize
+# Download punkt again to the correct location
+nltk.download('punkt', download_dir="/home/appuser/nltk_data")
 
 
-    
 def main():
     st.title("Company News Analysis App")
     
