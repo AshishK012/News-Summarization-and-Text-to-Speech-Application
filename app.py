@@ -8,11 +8,14 @@ from itertools import combinations
 import nltk
 import os
 
-# Set the path to your local nltk_data directory
-nltk.data.path.append(os.path.abspath("nltk_data"))
+# Explicitly set the environment variable
+os.environ["NLTK_DATA"] = "/home/appuser/nltk_data"
 
-# Now, try to use the tokenizer
-from nltk.tokenize import sent_tokenize
+# Ensure path is set
+nltk.data.path.append("/home/appuser/nltk_data")
+
+# Download punkt again to the correct location
+nltk.download('punkt', download_dir="/home/appuser/nltk_data")
 
 
 def main():
