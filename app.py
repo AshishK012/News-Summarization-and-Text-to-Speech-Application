@@ -9,24 +9,7 @@ import nltk
 import os
 
 
-# Define the correct NLTK data path
-nltk_data_path = "/home/vscode/nltk_data"
-
-# Ensure the directory exists
-os.makedirs(nltk_data_path, exist_ok=True)
-
-# Add the path explicitly
-nltk.data.path.insert(0, nltk_data_path)
-
-# Force re-download of punkt in deployment
-nltk.download('punkt', download_dir=nltk_data_path)
-
-# Verify if punkt is now accessible
-try:
-    nltk.data.find("tokenizers/punkt")
-    print("✅ Punkt tokenizer found in deployed environment!")
-except LookupError:
-    print("❌ Punkt tokenizer NOT found!")
+nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
 
 def main():
     st.title("Company News Analysis App")
