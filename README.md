@@ -8,7 +8,6 @@
     <h1>Company News Analysis App</h1>
     <p>This repository contains a Streamlit app and a FastAPI backend for fetching, analyzing, and summarizing news articles related to a given company.</p>
     <p>The application includes features such as sentiment analysis, topic extraction, comparative summaries, Hindi translation, and text-to-speech functionality.</p>
-    
     <h2>Features</h2>
     <ul>
         <li>Fetches latest news articles from Google News.</li>
@@ -20,7 +19,6 @@
         <li>Converts Hindi summaries to speech (Text-to-Speech).</li>
         <li>FastAPI backend to provide API endpoints for analysis.</li>
     </ul>
-    
     <h2>Project Structure</h2>
     <pre>
     📺 company-news-analysis
@@ -33,7 +31,6 @@
     │   ├── api.py (FastAPI backend)
     │── 📂 nltk_data (NLTK pre-downloaded data)
     </pre>
-    
     <h2>Live Demo</h2>
     <p>Try out the application:</p>
     <ul>
