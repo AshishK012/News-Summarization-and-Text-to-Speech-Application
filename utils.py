@@ -21,6 +21,9 @@ import streamlit as st
 
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('punkt_tab')
+nltk.download('wordnet')
+nltk.download('vader_lexicon')
 
 # --------- NEWS FETCHING FUNCTIONS ---------
 def get_google_news_links(company_name):
