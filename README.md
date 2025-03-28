@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Company News Analysis App</title>
+<title>Company News Analysis App</title>
 </head>
 <body>
     <h1>Company News Analysis App</h1>
