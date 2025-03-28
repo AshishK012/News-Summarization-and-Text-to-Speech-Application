@@ -23,6 +23,8 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('punkt_tab')
 nltk.download('wordnet')
+nltk.download('vader_lexicon')
+
 # --------- NEWS FETCHING FUNCTIONS ---------
 def get_google_news_links(company_name):
     search_url = f"https://www.google.com/search?q={company_name}+news+-nytimes+-wsj+-ft+-reuters+-pcmag&hl=en&gl=us&tbm=nws"
