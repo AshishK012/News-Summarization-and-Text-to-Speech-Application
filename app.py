@@ -5,6 +5,13 @@ from  utils import translate_to_hindi,strip_html,replace_contractions,remove_num
 import nltk
 from itertools import combinations
 
+import nltk
+import os
+
+# Set NLTK data path to the repo folder
+nltk.data.path.append(os.path.join(os.getcwd(), "nltk_data"))
+
+
 def main():
     st.title("Company News Analysis App")
     
