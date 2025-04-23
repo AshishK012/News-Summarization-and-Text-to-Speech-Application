@@ -27,7 +27,7 @@ nltk.download('vader_lexicon')
 
 # --------- NEWS FETCHING FUNCTIONS ---------
 def get_google_news_links(company_name):
-    search_url = f"https://www.google.com/search?q={company_name}+news+-nytimes+-wsj+-ft+-reuters+-pcmag&hl=en&gl=us&tbm=nws"
+    search_url = f"https://www.google.com/search?q={company_name}+company+news+-nytimes+-wsj+-ft+-reuters+-pcmag&hl=en&gl=us&tbm=nws"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
