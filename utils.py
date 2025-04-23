@@ -187,39 +187,37 @@ def get_sentiment(text):
     else:
         return "Neutral"
 
-def extractive_summarize(text, max_words=50):
-    # Clean and split text into words
+def extractive_summarize(text, chunk_size=25, num_chunks=5):
+
+    # Frequency analysis
     words = nltk.word_tokenize(text.lower())
     stopwords_set = set(stopwords.words('english'))
     words = [word for word in words if word.isalnum() and word not in stopwords_set]
-
     word_freq = Counter(words)
 
-    # Split original text into chunks (phrases of ~10–15 words)
+    # Tokenize and chunk
     tokens = nltk.word_tokenize(text)
-    chunks = [' '.join(tokens[i:i+30]) for i in range(0, len(tokens), 30)]
+    chunks = [' '.join(tokens[i:i + chunk_size]) for i in range(0, len(tokens), chunk_size)]
 
-    # Score chunks based on important word frequency
-    chunk_scores = []
+    # Score chunks
+    scored_chunks = []
     for chunk in chunks:
-        chunk_words = nltk.word_tokenize(chunk.lower())
-        score = sum(word_freq.get(word, 0) for word in chunk_words)
-        chunk_scores.append((chunk, score))
+        chunk_tokens = nltk.word_tokenize(chunk.lower())
+        score = sum(word_freq.get(word, 0) for word in chunk_tokens)
+        scored_chunks.append((chunk, score))
 
-    # Sort and select best chunks until we hit max_words
-    chunk_scores.sort(key=lambda x: x[1], reverse=True)
+    # Top chunks by score
+    top_chunks = sorted(scored_chunks, key=lambda x: x[1], reverse=True)[:num_chunks]
+    
+    # Maintain original order
+    top_texts = [chunk for chunk, _ in top_chunks]
+    ordered_summary = [chunk for chunk in chunks if chunk in top_texts]
 
-    summary = []
-    total_words = 0
-    for chunk, _ in chunk_scores:
-        chunk_word_count = len(nltk.word_tokenize(chunk))
-        if total_words + chunk_word_count <= max_words:
-            summary.append(chunk)
-            total_words += chunk_word_count
-        if total_words >= max_words:
-            break
+    # Ensure smooth sentence flow
+    summary = ' '.join(ordered_summary)
+    summary = re.sub(r'\s([?.!"](?:\s|$))', r'\1', summary)  # clean punctuation spacing
+    return summary
 
-    return ' '.join(summary)
 
 
 def extract_keywords(text, top_n=5):
