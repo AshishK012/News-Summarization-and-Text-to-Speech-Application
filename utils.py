@@ -187,25 +187,40 @@ def get_sentiment(text):
     else:
         return "Neutral"
 
-def extractive_summarize(text, min_words=20, max_words=25):
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    
-    sentences = nltk.sent_tokenize(text)
-    words = [word.lower() for word in nltk.word_tokenize(text) if word.isalnum()]
-    
-    stopwords_set = set(nltk.corpus.stopwords.words('english'))
-    words = [word for word in words if word not in stopwords_set]
-    
-    word_frequencies = Counter(words)
-    
-    # Get the top N most frequent words
-    top_words = [word for word, _ in word_frequencies.most_common(max_words)]
-    
-    # Create a summary strictly within the word limit
-    summary_words = top_words[:max_words]
-    
-    return ' '.join(summary_words)
+def extractive_summarize(text, max_words=50):
+    # Clean and split text into words
+    words = nltk.word_tokenize(text.lower())
+    stopwords_set = set(stopwords.words('english'))
+    words = [word for word in words if word.isalnum() and word not in stopwords_set]
+
+    word_freq = Counter(words)
+
+    # Split original text into chunks (phrases of ~10–15 words)
+    tokens = nltk.word_tokenize(text)
+    chunks = [' '.join(tokens[i:i+30]) for i in range(0, len(tokens), 30)]
+
+    # Score chunks based on important word frequency
+    chunk_scores = []
+    for chunk in chunks:
+        chunk_words = nltk.word_tokenize(chunk.lower())
+        score = sum(word_freq.get(word, 0) for word in chunk_words)
+        chunk_scores.append((chunk, score))
+
+    # Sort and select best chunks until we hit max_words
+    chunk_scores.sort(key=lambda x: x[1], reverse=True)
+
+    summary = []
+    total_words = 0
+    for chunk, _ in chunk_scores:
+        chunk_word_count = len(nltk.word_tokenize(chunk))
+        if total_words + chunk_word_count <= max_words:
+            summary.append(chunk)
+            total_words += chunk_word_count
+        if total_words >= max_words:
+            break
+
+    return ' '.join(summary)
+
 
 def extract_keywords(text, top_n=5):
     vectorizer = TfidfVectorizer(stop_words='english')
